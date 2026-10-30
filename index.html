@@ -2,243 +2,489 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ember &amp; Oat Coffee | Order your first cup today</title>
-<meta name="description" content="Fresh-roasted coffee delivered daily. Order today and get a free pastry with your first order.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember &amp; Oat Coffee | Order Fresh Coffee Delivered</title>
+<meta name="description" content="Fresh-roasted coffee delivered daily to your door by 8 a.m. Claim your free pastry with code FIRSTSIP.">
+
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          roast: {
+            950: '#1c0c07',
+            900: '#2C160C',
+            800: '#3A1D11',
+            700: '#522A1A',
+            600: '#733E28',
+          },
+          amber: {
+            accent: '#D48C46',
+            hover: '#C27B35',
+            light: '#F8EAD8',
+          },
+          cream: {
+            50: '#FCF9F2',
+            100: '#FAF2E6',
+            200: '#F4EAD3',
+            300: '#E8DABF',
+          },
+          oat: '#C4AB82',
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        boxShadow: {
+          'warm-lg': '0 20px 40px -15px rgba(44, 22, 12, 0.15)',
+          'warm-xl': '0 25px 50px -12px rgba(44, 22, 12, 0.25)',
+        }
+      }
+    }
+  }
+</script>
+
 <style>
-  :root {
-    --pine: #12362f;
-    --butter: #f6c945;
-    --milk: #fbf7ec;
-    --roast: #5a3a24;
-    --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    --body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  /* Custom Animated Steam Effect */
+  .steam-path {
+    fill: none;
+    stroke: #FAF2E6;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    opacity: 0;
+    animation: steamRising 3.5s ease-in-out infinite;
   }
-  * { box-sizing: border-box; margin: 0; }
-  body {
-    font-family: var(--body);
-    color: var(--roast);
-    background: #0c2621;
-    padding: 32px 16px;
-    line-height: 1.5;
-  }
-  .flyer {
-    max-width: 820px;
-    margin: 0 auto;
-    background: var(--milk);
-    border-radius: 18px;
-    overflow: hidden;
+  .steam-path-1 { animation-delay: 0s; }
+  .steam-path-2 { animation-delay: 1.1s; }
+  .steam-path-3 { animation-delay: 2.2s; }
+
+  @keyframes steamRising {
+    0% { opacity: 0; transform: translateY(10px) scaleX(0.9); }
+    35% { opacity: 0.75; }
+    100% { opacity: 0; transform: translateY(-22px) scaleX(1.25); }
   }
 
-  /* Top: brand, headline, illustration */
-  .top {
-    background: var(--pine);
-    color: var(--milk);
-    padding: 28px 44px 0;
-  }
-  .brand { display: flex; align-items: center; gap: 12px; font-family: var(--head); font-weight: 800; font-size: 1.25rem; }
-  .brand svg { width: 34px; height: 34px; }
-  .hero { display: grid; grid-template-columns: 1.15fr 1fr; align-items: end; gap: 12px; padding-top: 28px; }
-  h1 {
-    font-family: var(--head);
-    font-weight: 800;
-    font-size: clamp(2.6rem, 7vw, 4.4rem);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    color: var(--butter);
-    padding-bottom: 36px;
-  }
-  .cup-wrap { align-self: end; }
-  .cup-wrap svg { display: block; width: 100%; height: auto; }
-  .steam path { fill: none; stroke: var(--milk); stroke-width: 5; stroke-linecap: round; opacity: 0; animation: steam 3.2s ease-in-out infinite; }
-  .steam path:nth-child(2) { animation-delay: .8s; }
-  .steam path:nth-child(3) { animation-delay: 1.6s; }
-  @keyframes steam {
-    0% { opacity: 0; transform: translateY(14px); }
-    40% { opacity: .85; }
-    100% { opacity: 0; transform: translateY(-16px); }
+  /* Micro Grain Background Pattern */
+  .bg-grain {
+    background-image: radial-gradient(rgba(58, 29, 17, 0.04) 1px, transparent 0);
+    background-size: 16px 16px;
   }
 
-  /* Description + benefits */
-  .info { padding: 36px 44px 8px; }
-  .desc { font-size: 1.15rem; max-width: 60ch; }
-  .desc strong { color: var(--pine); }
-  .benefits { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .benefits li { display: flex; gap: 12px; align-items: flex-start; }
-  .benefits .ico { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--butter); display: grid; place-items: center; }
-  .benefits svg { width: 24px; height: 24px; stroke: var(--pine); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .benefits b { display: block; color: var(--pine); font-family: var(--head); font-size: 1.05rem; line-height: 1.2; margin-bottom: 2px; }
-  .benefits span { font-size: .95rem; }
-
-  /* Offer */
-  .offer {
-    margin: 30px 44px 0;
-    background: var(--butter);
-    color: var(--pine);
-    border-radius: 14px;
-    padding: 18px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+  /* Print Specific Optimization */
+  @media print {
+    body {
+      background: #ffffff !important;
+      padding: 0 !important;
+    }
+    .flyer-container {
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+    .no-print {
+      display: none !important;
+    }
   }
-  .offer h2 { font-family: var(--head); font-size: 1.5rem; line-height: 1.15; }
-  .offer p { font-size: .98rem; }
-  .code {
-    font-family: var(--head);
-    font-weight: 800;
-    font-size: 1.3rem;
-    border: 2.5px dashed var(--pine);
-    border-radius: 10px;
-    padding: 8px 16px;
-    white-space: nowrap;
-  }
-
-  /* CTA + contact */
-  .cta { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding: 34px 44px 40px; }
-  .cta h2 { font-family: var(--head); color: var(--pine); font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.05; letter-spacing: -0.01em; }
-  .btn {
-    display: inline-block;
-    margin: 16px 0 20px;
-    background: var(--pine);
-    color: var(--butter);
-    font-family: var(--head);
-    font-weight: 800;
-    font-size: 1.4rem;
-    padding: 16px 34px;
-    border-radius: 999px;
-    text-decoration: none;
-    transition: transform .15s ease, background .15s ease;
-  }
-  .btn:hover { background: #0b241f; transform: translateY(-2px); }
-  .btn:focus-visible, .contact a:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; box-shadow: 0 0 0 6px var(--pine); }
-  .contact { list-style: none; padding: 0; display: grid; gap: 6px; font-size: 1rem; }
-  .contact li { display: flex; gap: 10px; align-items: center; }
-  .contact svg { width: 20px; height: 20px; flex: none; stroke: var(--pine); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .contact a { color: inherit; text-decoration: none; border-bottom: 1.5px solid var(--butter); }
-  .qr { text-align: center; font-size: .9rem; font-weight: 500; color: var(--pine); }
-  .qr svg { display: block; width: 170px; height: 170px; background: #fff; padding: 10px; border-radius: 12px; border: 3px solid var(--pine); margin-bottom: 8px; }
-
-  @media (max-width: 640px) {
-    body { padding: 0; }
-    .flyer { border-radius: 0; }
-    .top, .info, .cta { padding-left: 22px; padding-right: 22px; }
-    .offer { margin-left: 22px; margin-right: 22px; }
-    .hero { grid-template-columns: 1fr; }
-    h1 { padding-bottom: 0; }
-    .cup-wrap { width: 78%; margin: 0 auto; }
-    .benefits { grid-template-columns: 1fr; }
-    .cta { grid-template-columns: 1fr; }
-    .qr { justify-self: start; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .steam path { animation: none; opacity: .6; }
-    .btn { transition: none; }
-  }
-  @media print { body { background: #fff; padding: 0; } .flyer { border-radius: 0; } }
 </style>
 </head>
-<body>
-<main class="flyer">
+<body class="bg-roast-950 text-roast-900 font-sans antialiased min-h-screen py-6 sm:py-10 px-3 sm:px-6 flex flex-col items-center justify-center">
 
-  <header class="top">
-    <div class="brand">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#f6c945"/><path d="M11 17h16v6a8 8 0 0 1-16 0z" fill="#12362f"/><path d="M27 18.5h2.5a3 3 0 0 1 0 6H27" fill="none" stroke="#12362f" stroke-width="2.4"/></svg>
-      Ember &amp; Oat Coffee
-    </div>
+  <!-- Interactive Utility Bar (No-Print) -->
+  <div class="no-print w-full max-w-3xl mb-4 flex justify-between items-center text-cream-200 text-xs sm:text-sm px-2">
+    <span class="flex items-center gap-2">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-accent"></span>
+      </span>
+      Live Flyer Preview &bull; Order System Active
+    </span>
+    <button onclick="window.print()" class="flex items-center gap-1.5 bg-roast-800 hover:bg-roast-700 text-cream-100 px-3 py-1.5 rounded-lg border border-roast-700 transition text-xs font-semibold shadow-sm">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+      Print Flyer
+    </button>
+  </div>
 
-    <div class="hero">
-      <h1>Fresh coffee, at your door by 8 a.m.</h1>
-      <div class="cup-wrap">
-        <svg viewBox="0 0 360 300" role="img" aria-label="Illustration of a steaming latte in a cup on a saucer">
-          <g class="steam">
-            <path d="M140 110c-14-20 14-34 0-56"/>
-            <path d="M185 110c-14-20 14-34 0-62"/>
-            <path d="M230 110c-14-20 14-34 0-56"/>
-          </g>
-          <ellipse cx="185" cy="282" rx="150" ry="16" fill="#0b241f"/>
-          <path d="M70 140h230v34c0 54-40 96-115 96S70 228 70 174z" fill="#f6c945"/>
-          <path d="M300 156h20a34 34 0 0 1 0 68h-30" fill="none" stroke="#f6c945" stroke-width="16" stroke-linecap="round"/>
-          <ellipse cx="185" cy="140" rx="115" ry="22" fill="#5a3a24"/>
-          <ellipse cx="185" cy="140" rx="96" ry="16" fill="#8a5a38"/>
-          <path d="M185 148c-18-9-26-16-26-22a10 10 0 0 1 26-3 10 10 0 0 1 26 3c0 6-8 13-26 22z" fill="#fbf7ec"/>
-        </svg>
+  <!-- Main Flyer Container -->
+  <main class="flyer-container w-full max-w-3xl bg-cream-100 rounded-3xl overflow-hidden shadow-warm-xl border border-cream-300 relative">
+    
+    <!-- HEADER HERO SECTION -->
+    <header class="bg-gradient-to-b from-roast-900 via-roast-800 to-roast-900 text-cream-100 px-6 sm:px-10 pt-8 pb-10 relative overflow-hidden">
+      <!-- Background subtle glow -->
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-amber-accent/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-roast-700/30 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Top Navigation / Brand Line -->
+      <div class="flex items-center justify-between border-b border-roast-700/60 pb-5 mb-8">
+        <div class="flex items-center gap-3">
+          <span class="bg-amber-accent/20 text-amber-accent text-xs font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full border border-amber-accent/30">
+            Micro-Batch Roastery
+          </span>
+        </div>
+        <div class="text-xs font-medium text-cream-300 flex items-center gap-2">
+          <svg class="w-4 h-4 text-amber-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Delivering Daily 6:00 AM – 11:00 AM
+        </div>
       </div>
+
+      <!-- Hero Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <!-- Left Headline Column -->
+        <div class="md:col-span-7 space-y-4 text-left">
+          <h1 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl leading-[1.1] text-cream-50 tracking-tight">
+            Fresh craft coffee, delivered to your door <span class="text-amber-accent italic font-normal">by 8 a.m.</span>
+          </h1>
+          <p class="text-cream-300 text-sm sm:text-base leading-relaxed font-normal pt-1 max-w-md">
+            Small-batch artisan roasts, brewed at peak extraction and delivered hot to your doorstep every morning.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-cream-200">
+            <span class="bg-roast-950/60 border border-roast-700/70 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+              <span class="text-amber-accent">✓</span> Zero Delivery Fee
+            </span>
+            <span class="bg-roast-950/60 border border-roast-700/70 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+              <span class="text-amber-accent">✓</span> Insulated Thermal Pouches
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Recreated Logo Badge Graphic -->
+        <div class="md:col-span-5 flex justify-center items-center relative">
+          <div class="relative w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+            
+            <!-- Exact Recreated SVG Badge -->
+            <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-2xl">
+              <!-- Outer Outer Ring -->
+              <circle cx="150" cy="150" r="142" fill="#FAF2E6" stroke="#3A1D11" stroke-width="3"/>
+              <!-- Inner Frame Ring -->
+              <circle cx="150" cy="150" r="134" fill="none" stroke="#3A1D11" stroke-width="1.5"/>
+
+              <!-- Animated Steam Waves -->
+              <g class="steam">
+                <path class="steam-path steam-path-1" d="M135 90 C 130 75, 145 65, 138 50" />
+                <path class="steam-path steam-path-2" d="M150 88 C 145 70, 160 60, 153 42" />
+                <path class="steam-path steam-path-3" d="M165 90 C 160 75, 175 65, 168 50" />
+              </g>
+
+              <!-- Coffee Cup & Saucer Motif -->
+              <g id="cup-and-saucer">
+                <!-- Saucer -->
+                <path d="M 92 142 C 92 160, 208 160, 208 142 C 208 135, 92 135, 92 142 Z" fill="#3A1D11"/>
+                <ellipse cx="150" cy="142" rx="55" ry="10" fill="#D48C46" opacity="0.3"/>
+                <!-- Cup Main Body -->
+                <path d="M 104 112 C 104 150, 120 156, 150 156 C 180 156, 196 150, 196 112 Z" fill="#3A1D11"/>
+                <path d="M 104 112 C 104 150, 120 156, 150 156 C 150 156, 140 112, 104 112 Z" fill="#2C160C" opacity="0.4"/>
+                <!-- Cup Rim / Coffee Liquid -->
+                <ellipse cx="150" cy="112" rx="46" ry="12" fill="#FAF2E6"/>
+                <ellipse cx="150" cy="112" rx="42" ry="9" fill="#3A1D11"/>
+                <ellipse cx="148" cy="112" rx="35" ry="6" fill="#522A1A"/>
+                <path d="M 130 112 Q 148 116 160 111" fill="none" stroke="#D48C46" stroke-width="2" opacity="0.7"/>
+                <!-- Handle -->
+                <path d="M 194 116 C 220 116, 220 142, 188 142" fill="none" stroke="#3A1D11" stroke-width="10" stroke-linecap="round"/>
+                <path d="M 194 116 C 214 116, 214 142, 188 142" fill="none" stroke="#FAF2E6" stroke-width="4" stroke-linecap="round"/>
+              </g>
+
+              <!-- Oat Stalk Wheat Detail Right Side -->
+              <g id="oat-stalk" transform="translate(145, 120) rotate(-15)">
+                <path d="M 20 20 Q 50 10, 70 -5" fill="none" stroke="#D48C46" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="45" cy="12" rx="8" ry="3.5" fill="#D48C46" transform="rotate(-20 45 12)"/>
+                <ellipse cx="58" cy="4" rx="8" ry="3.5" fill="#D48C46" transform="rotate(-15 58 4)"/>
+                <ellipse cx="68" cy="-5" rx="7" ry="3" fill="#D48C46" transform="rotate(-10 68 -5)"/>
+                <ellipse cx="38" cy="22" rx="7" ry="3" fill="#C4AB82" transform="rotate(15 38 22)"/>
+                <ellipse cx="52" cy="15" rx="7" ry="3" fill="#C4AB82" transform="rotate(20 52 15)"/>
+              </g>
+
+              <!-- Main Brand Typography -->
+              <text x="150" y="196" font-family="'Playfair Display', serif" font-weight="800" font-size="28" fill="#3A1D11" text-anchor="middle" letter-spacing="-0.5">
+                ember <tspan font-family="'Playfair Display', serif" font-style="italic" font-weight="400" font-size="20">and</tspan> oat
+              </text>
+
+              <!-- Subtitle Separator Lines & Text -->
+              <line x1="60" y1="210" x2="98" y2="210" stroke="#3A1D11" stroke-width="1.2"/>
+              <text x="150" y="214" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#3A1D11" text-anchor="middle" letter-spacing="4">
+                COFFEE
+              </text>
+              <line x1="202" y1="210" x2="240" y2="210" stroke="#3A1D11" stroke-width="1.2"/>
+
+              <!-- Coffee Beans Bottom Decorative Motif -->
+              <g transform="translate(150, 238)">
+                <!-- Left Bean -->
+                <g transform="translate(-10, 0) rotate(-25)">
+                  <ellipse cx="0" cy="0" rx="8" ry="5.5" fill="#3A1D11"/>
+                  <path d="M -6 -1 C -1 2, 1 -2, 6 1" fill="none" stroke="#FAF2E6" stroke-width="1"/>
+                </g>
+                <!-- Right Bean -->
+                <g transform="translate(8, -2) rotate(20)">
+                  <ellipse cx="0" cy="0" rx="7" ry="5" fill="#3A1D11"/>
+                  <path d="M -5 -1 C -1 1, 1 -1, 5 1" fill="none" stroke="#FAF2E6" stroke-width="1"/>
+                </g>
+                <!-- Small Leaves -->
+                <path d="M -22 2 Q -16 -4 -12 2 Z" fill="#D48C46"/>
+                <path d="M 22 2 Q 16 -4 12 2 Z" fill="#D48C46"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- VALUE PROPOSITIONS / BENEFITS CARDS -->
+    <section class="bg-grain px-6 sm:px-10 py-8 border-b border-cream-300">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Feature 1 -->
+        <div class="bg-cream-50 p-5 rounded-2xl border border-cream-200/80 shadow-sm flex items-start gap-4 hover:border-amber-accent/40 transition">
+          <div class="w-11 h-11 rounded-xl bg-amber-light text-roast-800 flex items-center justify-center flex-shrink-0 border border-amber-accent/20">
+            <svg class="w-6 h-6 text-amber-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-roast-900 text-base leading-snug">Roasted Every Morning</h3>
+            <p class="text-xs text-roast-700/80 mt-1 leading-relaxed">Small batches roasted daily at 4:00 AM for unmatched peak flavor and aroma.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-cream-50 p-5 rounded-2xl border border-cream-200/80 shadow-sm flex items-start gap-4 hover:border-amber-accent/40 transition">
+          <div class="w-11 h-11 rounded-xl bg-amber-light text-roast-800 flex items-center justify-center flex-shrink-0 border border-amber-accent/20">
+            <svg class="w-6 h-6 text-amber-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-roast-900 text-base leading-snug">Hot 30-Min Delivery</h3>
+            <p class="text-xs text-roast-700/80 mt-1 leading-relaxed">Guaranteed piping hot arrival right to your home, apartment, or office desk.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-cream-50 p-5 rounded-2xl border border-cream-200/80 shadow-sm flex items-start gap-4 hover:border-amber-accent/40 transition">
+          <div class="w-11 h-11 rounded-xl bg-amber-light text-roast-800 flex items-center justify-center flex-shrink-0 border border-amber-accent/20">
+            <svg class="w-6 h-6 text-amber-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-roast-900 text-base leading-snug">Craft Quality from $3</h3>
+            <p class="text-xs text-roast-700/80 mt-1 leading-relaxed">Premium oat lattes, cold brews, and single-origin pour-overs at friendly prices.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROMO OFFER BANNER (INTERACTIVE) -->
+    <section class="px-6 sm:px-10 py-6 bg-gradient-to-r from-amber-accent/15 via-amber-light to-amber-accent/15 border-b border-amber-accent/20">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        
+        <!-- Offer Text -->
+        <div class="text-center sm:text-left">
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-roast-800 uppercase tracking-wider mb-1">
+            <span class="w-2 h-2 rounded-full bg-amber-accent animate-pulse"></span>
+            Limited Welcome Offer
+          </div>
+          <h2 class="font-serif font-bold text-xl sm:text-2xl text-roast-900 leading-tight">
+            Free Fresh Pastry with Your First Order
+          </h2>
+          <p class="text-xs text-roast-700 mt-0.5">
+            Claim an authentic buttery croissant or oat-chocolate scone on us. 
+            <span id="stock-count" class="font-semibold text-roast-900 underline decoration-amber-accent">Only 14 left today!</span>
+          </p>
+        </div>
+
+        <!-- Copyable Coupon Badge -->
+        <div class="flex-shrink-0 flex flex-col items-center sm:items-end">
+          <button id="copy-btn" onclick="copyPromoCode()" class="group relative bg-roast-900 hover:bg-roast-800 text-cream-100 px-5 py-3 rounded-xl border-2 border-dashed border-amber-accent flex items-center gap-3 transition shadow-md active:scale-95">
+            <div class="text-left">
+              <span class="block text-[10px] text-cream-300 font-bold uppercase tracking-widest">Tap Code to Copy</span>
+              <span class="font-mono font-bold text-lg text-amber-accent group-hover:text-amber-300">FIRSTSIP</span>
+            </div>
+            <div class="w-8 h-8 rounded-lg bg-roast-800 group-hover:bg-roast-700 flex items-center justify-center text-cream-200 border border-roast-600">
+              <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3"/></svg>
+              <svg id="check-icon" class="w-4 h-4 text-green-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </button>
+          <span id="copy-toast" class="text-[11px] font-semibold text-roast-800 opacity-0 transition-opacity mt-1">Code copied to clipboard!</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRIMARY CALL TO ACTION & CONTACT SECTION -->
+    <section class="bg-cream-100 px-6 sm:px-10 py-8 sm:py-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: CTA Action & Contact Info -->
+        <div class="md:col-span-8 space-y-6">
+          <div>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-roast-900 leading-tight">
+              Order today and taste the difference.
+            </h2>
+            <p class="text-xs sm:text-sm text-roast-700 mt-2">
+              Ready for your morning brew? Scan the QR code or tap below to customize your order.
+            </p>
+          </div>
+
+          <!-- Primary CTA Button -->
+          <div class="flex flex-wrap items-center gap-4">
+            <button onclick="triggerOrderModal()" class="bg-amber-accent hover:bg-amber-hover text-roast-950 font-bold text-base sm:text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-3">
+              <span>Order Now Online</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+            <span class="text-xs text-roast-700 font-semibold">Average delivery time: <strong class="text-roast-900">22 mins</strong></span>
+          </div>
+
+          <!-- Contact Details Grid -->
+          <div class="pt-2 border-t border-cream-300/80">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-roast-700 mb-3">Direct Contact &amp; Hours</p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-roast-900">
+              <li class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-cream-200 flex items-center justify-center text-roast-800 flex-shrink-0">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </span>
+                <a href="tel:+639193164052" class="hover:text-amber-accent transition font-medium">(+63) 919-3164-052</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-cream-200 flex items-center justify-center text-roast-800 flex-shrink-0">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </span>
+                <a href="mailto:hello@emberandoat.com" class="hover:text-amber-accent transition font-medium">hello@emberandoat.com</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-cream-200 flex items-center justify-center text-roast-800 flex-shrink-0">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+                </span>
+                <a href="https://www.emberandoat.com" target="_blank" class="hover:text-amber-accent transition font-medium">www.emberandoat.com</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-cream-200 flex items-center justify-center text-roast-800 flex-shrink-0">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </span>
+                <a href="#" class="hover:text-amber-accent transition font-medium">@emberandoat.coffee</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Crisp Dynamic QR Code Card -->
+        <div class="md:col-span-4 flex flex-col items-center justify-center">
+          <div class="bg-white p-4 rounded-2xl border-2 border-roast-800 shadow-md flex flex-col items-center text-center">
+            
+            <!-- Crisp Crisp Dynamic QR Code SVG -->
+            <div class="w-36 h-36 bg-cream-50 p-2 rounded-xl border border-cream-200">
+              <svg id="qr-code" viewBox="0 0 25 25" class="w-full h-full text-roast-900" aria-label="Order QR Code"></svg>
+            </div>
+
+            <div class="mt-3">
+              <span class="block text-xs font-bold text-roast-900 uppercase tracking-wide">Scan to Order</span>
+              <span class="block text-[10px] text-roast-700 mt-0.5">Instant Mobile Ordering</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER BAR -->
+    <footer class="bg-roast-900 text-cream-300 text-[11px] px-6 sm:px-10 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 border-t border-roast-800">
+      <p>© 2026 Ember &amp; Oat Coffee Co. All rights reserved.</p>
+      <p class="text-roast-600">Roasted with passion • Delivered with care</p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Feedback Toast Modal (Hidden by Default) -->
+  <div id="order-modal" class="fixed inset-0 bg-roast-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-cream-50 border border-cream-300 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modal-box">
+      <div class="w-12 h-12 rounded-full bg-amber-light text-amber-accent flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h3 class="font-serif font-bold text-xl text-roast-900">Redirecting to Order App</h3>
+      <p class="text-xs text-roast-700 mt-2">Opening Ember &amp; Oat morning menu... Promo code <strong class="text-roast-900">FIRSTSIP</strong> auto-applied!</p>
+      <button onclick="closeOrderModal()" class="mt-5 w-full bg-roast-900 text-cream-100 font-bold py-2.5 rounded-xl text-xs hover:bg-roast-800 transition">
+        Close Preview
+      </button>
     </div>
-  </header>
+  </div>
 
-  <section class="info">
-    <p class="desc">
-      <strong>Ember &amp; Oat</strong> roasts small batches of coffee every morning and brings them to you hot. Choose your drink, pick a time, and we handle the rest. Great coffee should not take a detour from your day.
-    </p>
+  <!-- JavaScript Interactions -->
+  <script>
+    // Generate Crisp Decorative QR Code
+    (function generateQRCode() {
+      const N = 25;
+      const svg = document.getElementById("qr-code");
+      let seed = 12;
+      let out = "";
 
-    <ul class="benefits">
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h14v4a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M17 12h2a2.5 2.5 0 0 1 0 5h-2M8 3v3M12 3v3"/></svg></div>
-        <div><b>Roasted every morning</b><span>Fresh beans, never stale.</span></div>
-      </li>
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h5l3 3v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
-        <div><b>Fast delivery</b><span>At your door within 30 minutes.</span></div>
-      </li>
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c-.5-1-1.600-1.500-3-1.500-1.700 0-3 .8-3 2s1.300 1.800 3 2 3 .8 3 2-1.300 2-3 2c-1.400 0-2.500-.5-3-1.500"/></svg></div>
-        <div><b>Affordable prices</b><span>Drinks start at $3.</span></div>
-      </li>
-    </ul>
-  </section>
+      function rnd() {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      }
 
-  <aside class="offer" aria-label="Limited-time offer">
-    <div>
-      <h2>Free pastry with your first order</h2>
-      <p>Only 50 free pastries left this week.</p>
-    </div>
-    <div class="code" aria-label="Discount code FIRSTSIP">Code: FIRSTSIP</div>
-  </aside>
+      function finder(x, y) {
+        return `<rect x="${x}" y="${y}" width="7" height="7" fill="#2C160C"/>` +
+               `<rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#FAF2E6"/>` +
+               `<rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#2C160C"/>`;
+      }
 
-  <section class="cta">
-    <div>
-      <h2>Order today and taste the difference.</h2>
-      <a class="btn" href="#order">Order now</a>
-      <ul class="contact">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+15550148271">(+63) 919-3164-052</a></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:hello@emberandoat.com">johnlimjoco2@gmail.com</a></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg><a href="#">facebook.com/emberandoatcoffee</a></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r=".6"/></svg><a href="#">@emberandoat.coffee</a></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><a href="#">www.emberandoat.com</a></li>
-      </ul>
-    </div>
+      function inFinder(i, j) {
+        return (i < 8 && j < 8) || (i > N - 9 && j < 8) || (i < 8 && j > N - 9);
+      }
 
-    <div class="qr" id="order">
-      <svg id="qr" viewBox="0 0 25 25" role="img" aria-label="Sample QR code for ordering"></svg>
-      Scan to order
-    </div>
-  </section>
+      for (let j = 0; j < N; j++) {
+        for (let i = 0; i < N; i++) {
+          if (!inFinder(i, j) && rnd() > 0.48) {
+            out += `<rect x="${i}" y="${j}" width="1" height="1" fill="#2C160C"/>`;
+          }
+        }
+      }
 
-</main>
+      svg.innerHTML = out + finder(0, 0) + finder(N - 7, 0) + finder(0, N - 7);
+    })();
 
-<script>
-  // Sample QR-style graphic (decorative placeholder; swap in a real QR image before printing).
-  (function () {
-    var N = 25, svg = document.getElementById("qr"), seed = 7, out = "";
-    function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-    function finder(x, y) {
-      return '<rect x="' + x + '" y="' + y + '" width="7" height="7" fill="#12362f"/>' +
-             '<rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="5" height="5" fill="#fff"/>' +
-             '<rect x="' + (x + 2) + '" y="' + (y + 2) + '" width="3" height="3" fill="#12362f"/>';
+    <!-- Copy Code Interaction -->
+    function copyPromoCode() {
+      const promoCode = "FIRSTSIP";
+      const tempInput = document.createElement("input");
+      tempInput.value = promoCode;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      const copyIcon = document.getElementById("copy-icon");
+      const checkIcon = document.getElementById("check-icon");
+      const toast = document.getElementById("copy-toast");
+
+      copyIcon.classList.add("hidden");
+      checkIcon.classList.remove("hidden");
+      toast.classList.remove("opacity-0");
+
+      setTimeout(() => {
+        copyIcon.classList.remove("hidden");
+        checkIcon.classList.add("hidden");
+        toast.classList.add("opacity-0");
+      }, 2500);
     }
-    function inFinder(i, j) {
-      return (i < 8 && j < 8) || (i > N - 9 && j < 8) || (i < 8 && j > N - 9);
+
+    //Modal Order Simulation
+    function triggerOrderModal() {
+      const modal = document.getElementById("order-modal");
+      const box = document.getElementById("modal-box");
+      modal.classList.remove("opacity-0", "pointer-events-none");
+      box.classList.remove("scale-95");
+      box.classList.add("scale-100");
     }
-    for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) {
-      if (!inFinder(i, j) && rnd() > 0.52) out += '<rect x="' + i + '" y="' + j + '" width="1" height="1" fill="#12362f"/>';
+
+    function closeOrderModal() {
+      const modal = document.getElementById("order-modal");
+      const box = document.getElementById("modal-box");
+      modal.classList.add("opacity-0", "pointer-events-none");
+      box.classList.remove("scale-100");
+      box.classList.add("scale-95");
     }
-    svg.innerHTML = out + finder(0, 0) + finder(N - 7, 0) + finder(0, N - 7);
-  })();
-</script>
+  </script>
 </body>
 </html>
