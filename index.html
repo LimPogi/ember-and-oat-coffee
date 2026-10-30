@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember &amp; Oat Coffee | Order your first cup today</title>
+<meta name="description" content="Fresh-roasted coffee delivered daily. Order today and get a free pastry with your first order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pine: #12362f;
+    --butter: #f6c945;
+    --milk: #fbf7ec;
+    --roast: #5a3a24;
+    --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: var(--body);
+    color: var(--roast);
+    background: #0c2621;
+    padding: 32px 16px;
+    line-height: 1.5;
+  }
+  .flyer {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--milk);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  /* Top: brand, headline, illustration */
+  .top {
+    background: var(--pine);
+    color: var(--milk);
+    padding: 28px 44px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: var(--head); font-weight: 800; font-size: 1.25rem; }
+  .brand svg { width: 34px; height: 34px; }
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; align-items: end; gap: 12px; padding-top: 28px; }
+  h1 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: var(--butter);
+    padding-bottom: 36px;
+  }
+  .cup-wrap { align-self: end; }
+  .cup-wrap svg { display: block; width: 100%; height: auto; }
+  .steam path { fill: none; stroke: var(--milk); stroke-width: 5; stroke-linecap: round; opacity: 0; animation: steam 3.2s ease-in-out infinite; }
+  .steam path:nth-child(2) { animation-delay: .8s; }
+  .steam path:nth-child(3) { animation-delay: 1.6s; }
+  @keyframes steam {
+    0% { opacity: 0; transform: translateY(14px); }
+    40% { opacity: .85; }
+    100% { opacity: 0; transform: translateY(-16px); }
+  }
+
+  /* Description + benefits */
+  .info { padding: 36px 44px 8px; }
+  .desc { font-size: 1.15rem; max-width: 60ch; }
+  .desc strong { color: var(--pine); }
+  .benefits { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .benefits li { display: flex; gap: 12px; align-items: flex-start; }
+  .benefits .ico { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--butter); display: grid; place-items: center; }
+  .benefits svg { width: 24px; height: 24px; stroke: var(--pine); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .benefits b { display: block; color: var(--pine); font-family: var(--head); font-size: 1.05rem; line-height: 1.2; margin-bottom: 2px; }
+  .benefits span { font-size: .95rem; }
+
+  /* Offer */
+  .offer {
+    margin: 30px 44px 0;
+    background: var(--butter);
+    color: var(--pine);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .offer h2 { font-family: var(--head); font-size: 1.5rem; line-height: 1.15; }
+  .offer p { font-size: .98rem; }
+  .code {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 1.3rem;
+    border: 2.5px dashed var(--pine);
+    border-radius: 10px;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+
+  /* CTA + contact */
+  .cta { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding: 34px 44px 40px; }
+  .cta h2 { font-family: var(--head); color: var(--pine); font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.05; letter-spacing: -0.01em; }
+  .btn {
+    display: inline-block;
+    margin: 16px 0 20px;
+    background: var(--pine);
+    color: var(--butter);
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 1.4rem;
+    padding: 16px 34px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { background: #0b241f; transform: translateY(-2px); }
+  .btn:focus-visible, .contact a:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; box-shadow: 0 0 0 6px var(--pine); }
+  .contact { list-style: none; padding: 0; display: grid; gap: 6px; font-size: 1rem; }
+  .contact li { display: flex; gap: 10px; align-items: center; }
+  .contact svg { width: 20px; height: 20px; flex: none; stroke: var(--pine); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .contact a { color: inherit; text-decoration: none; border-bottom: 1.5px solid var(--butter); }
+  .qr { text-align: center; font-size: .9rem; font-weight: 500; color: var(--pine); }
+  .qr svg { display: block; width: 170px; height: 170px; background: #fff; padding: 10px; border-radius: 12px; border: 3px solid var(--pine); margin-bottom: 8px; }
+
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .flyer { border-radius: 0; }
+    .top, .info, .cta { padding-left: 22px; padding-right: 22px; }
+    .offer { margin-left: 22px; margin-right: 22px; }
+    .hero { grid-template-columns: 1fr; }
+    h1 { padding-bottom: 0; }
+    .cup-wrap { width: 78%; margin: 0 auto; }
+    .benefits { grid-template-columns: 1fr; }
+    .cta { grid-template-columns: 1fr; }
+    .qr { justify-self: start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .steam path { animation: none; opacity: .6; }
+    .btn { transition: none; }
+  }
+  @media print { body { background: #fff; padding: 0; } .flyer { border-radius: 0; } }
+</style>
+</head>
+<body>
+<main class="flyer">
+
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#f6c945"/><path d="M11 17h16v6a8 8 0 0 1-16 0z" fill="#12362f"/><path d="M27 18.5h2.5a3 3 0 0 1 0 6H27" fill="none" stroke="#12362f" stroke-width="2.4"/></svg>
+      Ember &amp; Oat Coffee
+    </div>
+
+    <div class="hero">
+      <h1>Fresh coffee, at your door by 8 a.m.</h1>
+      <div class="cup-wrap">
+        <svg viewBox="0 0 360 300" role="img" aria-label="Illustration of a steaming latte in a cup on a saucer">
+          <g class="steam">
+            <path d="M140 110c-14-20 14-34 0-56"/>
+            <path d="M185 110c-14-20 14-34 0-62"/>
+            <path d="M230 110c-14-20 14-34 0-56"/>
+          </g>
+          <ellipse cx="185" cy="282" rx="150" ry="16" fill="#0b241f"/>
+          <path d="M70 140h230v34c0 54-40 96-115 96S70 228 70 174z" fill="#f6c945"/>
+          <path d="M300 156h20a34 34 0 0 1 0 68h-30" fill="none" stroke="#f6c945" stroke-width="16" stroke-linecap="round"/>
+          <ellipse cx="185" cy="140" rx="115" ry="22" fill="#5a3a24"/>
+          <ellipse cx="185" cy="140" rx="96" ry="16" fill="#8a5a38"/>
+          <path d="M185 148c-18-9-26-16-26-22a10 10 0 0 1 26-3 10 10 0 0 1 26 3c0 6-8 13-26 22z" fill="#fbf7ec"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section class="info">
+    <p class="desc">
+      <strong>Ember &amp; Oat</strong> roasts small batches of coffee every morning and brings them to you hot. Choose your drink, pick a time, and we handle the rest. Great coffee should not take a detour from your day.
+    </p>
+
+    <ul class="benefits">
+      <li>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h14v4a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M17 12h2a2.5 2.5 0 0 1 0 5h-2M8 3v3M12 3v3"/></svg></div>
+        <div><b>Roasted every morning</b><span>Fresh beans, never stale.</span></div>
+      </li>
+      <li>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h5l3 3v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+        <div><b>Fast delivery</b><span>At your door within 30 minutes.</span></div>
+      </li>
+      <li>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c-.5-1-1.600-1.500-3-1.500-1.700 0-3 .8-3 2s1.300 1.800 3 2 3 .8 3 2-1.300 2-3 2c-1.400 0-2.500-.5-3-1.500"/></svg></div>
+        <div><b>Affordable prices</b><span>Drinks start at $3.</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <aside class="offer" aria-label="Limited-time offer">
+    <div>
+      <h2>Free pastry with your first order</h2>
+      <p>Only 50 free pastries left this week.</p>
+    </div>
+    <div class="code" aria-label="Discount code FIRSTSIP">Code: FIRSTSIP</div>
+  </aside>
+
+  <section class="cta">
+    <div>
+      <h2>Order today and taste the difference.</h2>
+      <a class="btn" href="#order">Order now</a>
+      <ul class="contact">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+15550148271">(+63) 919-3164-052</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:hello@emberandoat.com">johnlimjoco2@gmail.com</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg><a href="#">facebook.com/emberandoatcoffee</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r=".6"/></svg><a href="#">@emberandoat.coffee</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><a href="#">www.emberandoat.com</a></li>
+      </ul>
+    </div>
+
+    <div class="qr" id="order">
+      <svg id="qr" viewBox="0 0 25 25" role="img" aria-label="Sample QR code for ordering"></svg>
+      Scan to order
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Sample QR-style graphic (decorative placeholder; swap in a real QR image before printing).
+  (function () {
+    var N = 25, svg = document.getElementById("qr"), seed = 7, out = "";
+    function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    function finder(x, y) {
+      return '<rect x="' + x + '" y="' + y + '" width="7" height="7" fill="#12362f"/>' +
+             '<rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="5" height="5" fill="#fff"/>' +
+             '<rect x="' + (x + 2) + '" y="' + (y + 2) + '" width="3" height="3" fill="#12362f"/>';
+    }
+    function inFinder(i, j) {
+      return (i < 8 && j < 8) || (i > N - 9 && j < 8) || (i < 8 && j > N - 9);
+    }
+    for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) {
+      if (!inFinder(i, j) && rnd() > 0.52) out += '<rect x="' + i + '" y="' + j + '" width="1" height="1" fill="#12362f"/>';
+    }
+    svg.innerHTML = out + finder(0, 0) + finder(N - 7, 0) + finder(0, N - 7);
+  })();
+</script>
+</body>
+</html>
